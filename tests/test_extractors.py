@@ -1,6 +1,7 @@
 """Unit tests for all 5 radar and POI extractors."""
 
 import unittest
+from unittest.mock import MagicMock, patch
 from sentinela_pipeline.extractors import (
     AnttExtractor,
     DnitExtractor,
@@ -297,8 +298,6 @@ class TestExtractors(unittest.TestCase):
         self.assertEqual(len(needs_geocode), 1)
 
     def test_fetch_methods_with_mocked_http(self):
-        from unittest.mock import MagicMock, patch
-
         mock_resp = MagicMock()
         mock_resp.read.return_value = b'[{"latitude": "-22.1", "longitude": "-43.1", "praca_de_pedagio": "P1"}]'
 

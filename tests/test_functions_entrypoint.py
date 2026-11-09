@@ -1,11 +1,17 @@
 """Unit tests for Cloud Run Function entrypoints."""
 
+import base64
+import json
 import tempfile
 import unittest
-from unittest.mock import MagicMock
-from sentinela_pipeline.functions.extractor_entrypoint import extract_and_stage_pipeline
+from unittest.mock import MagicMock, patch
+from sentinela_pipeline.functions.extractor_entrypoint import (
+    extract_and_stage_handler,
+    extract_and_stage_pipeline,
+)
 from sentinela_pipeline.functions.geocoder_entrypoint import (
     consolidate_and_export_pipeline,
+    geocoding_worker_handler,
     process_geocoding_message,
 )
 from sentinela_pipeline.geocoding import AddressCacheManager, GeocoderService
@@ -143,14 +149,6 @@ class TestFunctionEntrypoints(unittest.TestCase):
             self.assertEqual(mock_blob.upload_from_filename.call_count, 4)
 
     def test_entrypoint_http_and_cloudevent_handlers(self):
-        import base64
-        import json
-        from unittest.mock import patch
-        from sentinela_pipeline.functions import (
-            extract_and_stage_handler,
-            geocoding_worker_handler,
-        )
-
         # 1. Test extract_and_stage_handler
         with patch("sentinela_pipeline.functions.extractor_entrypoint.extract_and_stage_pipeline") as mock_pipe:
             mock_pipe.return_value = {"status": "SUCCESS", "counts": {}}

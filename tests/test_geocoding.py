@@ -63,7 +63,6 @@ class TestGeocoding(unittest.TestCase):
         self.assertIsNone(gmaps.geocode("   "))
 
         # Status != OK
-        from unittest.mock import patch
         with patch("urllib.request.urlopen") as mock_url:
             mock_resp = MagicMock()
             mock_resp.read.return_value = b'{"status": "ZERO_RESULTS", "results": []}'

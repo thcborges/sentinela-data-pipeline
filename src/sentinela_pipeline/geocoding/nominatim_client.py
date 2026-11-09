@@ -3,7 +3,7 @@
 import json
 import logging
 import time
-from typing import Any, Dict, Optional, Tuple
+from typing import Optional, Tuple
 import urllib.parse
 import urllib.request
 

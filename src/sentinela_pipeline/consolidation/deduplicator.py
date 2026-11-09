@@ -1,7 +1,7 @@
 """Spatial deduplication engine with semantic type compatibility."""
 
 import math
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 
 def haversine_distance_meters(lat1: float, lon1: float, lat2: float, lon2: float) -> float:

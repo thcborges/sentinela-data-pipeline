@@ -2,7 +2,7 @@
 
 import json
 import logging
-from typing import Any, Dict, Optional, Tuple
+from typing import Optional, Tuple
 import urllib.parse
 import urllib.request
 
